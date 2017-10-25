@@ -1,6 +1,7 @@
 # VM Setup
 
 This document describes how to set up the workshop VM.
+
 The VM image is available here (root / couchbase):
 * https://www.dropbox.com/s/1t43x0eav7rgxve/Couchbase-Dev.tar.gz?dl=0
 
@@ -8,13 +9,16 @@ The VM image is available here (root / couchbase):
 
 > We recommend to install the latest version of VirtualBox. (currently 5.1.30)
 
-VirtualBox allows to configure various virtual network cards. (more information: https://www.virtualbox.org/manual/ch06.html)
+VirtualBox allows to configure various virtual network cards. (https://www.virtualbox.org/manual/ch06.html)
+
 We will detail here 2 different interfaces: NAT & Host-only.
 
 ### NAT
 
 If you just want to access the outside world from within the VM then a NAT interface is enough.
+
 _The NAT interface should be there by default._
+
 The NAT IP is automatically assigned and is usually something like '10.0.2.15'.
 
 In order to enable access from the outside world via NAT (to connect to Couchbase from host), there are 2 options:
@@ -49,7 +53,7 @@ It allows us to connect to our VM without using Port forwarding.
 
 ## Virtual Machine Setup
 
-> If you use the provided VM image, then you can skip the following steps BUT at least check if the network is configured correctly!
+> If you use the provided VM image, then you can skip the following steps.
 
 Perform the following steps in order to create the Virtual Machine:
 
@@ -87,9 +91,11 @@ nmtui
 * Make sure that all network devices are enabled at startup and that they are available to all users
 * Check the name server settings
 * Change the host name to 'couchbase-dev.localdomain'
-* Show your IP addresses:
 ```
 hostname couchbase-dev.localdomain
+```
+* Show your IP addresses:
+```
 ip addr show
 ```
 
@@ -125,7 +131,7 @@ cd Downloads
 wget https://packages.couchbase.com/releases/5.0.0/couchbase-server-enterprise-5.0.0-centos7.x86_64.rpm
 ```
 
-### Graphical User Interface
+#### Graphical User Interface
 
 We want to do some Development exercises on the VM, so we need a way to access a graphical user interface.
 More information about VNC setup on CentOS7 => https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-remote-access-for-the-gnome-desktop-on-centos-7
@@ -191,7 +197,8 @@ systemctl enable vncserver@:1.service
 
 > The VNC Server can be stopped by using the command 'vncserver -kill :1'
 
-### Java IDE
+
+#### Java IDE
 
 * Install Maven
 ```
@@ -255,7 +262,8 @@ Or use the Desktop link 'Netbeans 8.2'
 * Create an empty Maven Java project and build it
 
 
-### C/C++ IDE
+
+#### C/C++ IDE
 
 * Install the development tools
 ```
