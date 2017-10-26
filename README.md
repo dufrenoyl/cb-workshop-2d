@@ -1,7 +1,6 @@
 # Couchbase Development Workshop - 2 days
 
 Couchbase is the most powerful NoSQL data platform.
-It is an open source, distributed, NoSQL engagement database. It exposes a fast key-value store with managed cache for submillisecond data operations, purpose-built indexers for fast queries and a query engine for executing SQL-like queries. Couchbase Server was designed to satisfy requirements for a flexible data model, a powerful query language, scalability, performance, simple administration and high availability.
 
 This course is designed to give an introduction into Couchbase's main use cases, teach the Couchbase Server's administration basics and it's architecture. The main focus of this 2 day workshop is to learn how to develop with Couchbase's standard development kits. You will learn how to manage connections, how to work with documents and how to model your data best for Couchbase.
 
@@ -9,7 +8,7 @@ This is a combined C/C++ & Java workshop. The Couchbase development basics will 
 
 ## Requirements
 
-Each training computer should have at least the following HW configuration
+Each training computer should have at least the following HW configuration.
 
 * 4 CPU cores >=2GHz
 * 8 GB RAM
@@ -18,7 +17,6 @@ Each training computer should have at least the following HW configuration
 The following connectivity is expected:
 
 * Internet access
-* Access to Dropbox (alternatively the training material and environment can be provided on a network share in the LAN)
 
 The following software needs to be installed on the attendee's computer:
 
@@ -32,7 +30,11 @@ The attendee should have all required permissions to create Virtual Machines and
 
 Details regarding the setup of the workshop VM can be found here:
 
-* [VMSETUP](https://github.com/dufrenoyl/cb-workshop-dev/blob/master/VMSETUP.md)
+* [VMSETUP](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/VMSETUP.md)
+
+You can  directly download the VM and import the Appliance in VirtualBox:
+
+*  
 
 ## Slides
 

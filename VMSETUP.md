@@ -1,9 +1,8 @@
 # VM Setup
 
-This document describes how to set up the workshop VM.
-
+This document describes how to set up the workshop VM.  
 The VM image is available here (root / couchbase):
-* https://www.dropbox.com/s/1t43x0eav7rgxve/Couchbase-Dev.tar.gz?dl=0
+*
 
 ## VirtualBox Settings
 
@@ -15,17 +14,15 @@ We will detail here 2 different interfaces: NAT & Host-only.
 
 ### NAT
 
-If you just want to access the outside world from within the VM then a NAT interface is enough.
-
-_The NAT interface should be there by default._
-
+If you just want to access the outside world from within the VM then a NAT interface is enough.  
+_The NAT interface should be there by default._  
 The NAT IP is automatically assigned and is usually something like '10.0.2.15'.
 
-In order to enable access from the outside world via NAT (to connect to Couchbase from host), there are 2 options:
-  * NAT Port forwarding on the same interface.
-  * Create a new interface Host-only. [Host only](#host-only)
+In order to enable access from the outside world via NAT, 2 options:
+  1. NAT Port forwarding on the same interface.
+  2. Create a new interface Host-only as described below. [Host only](#host-only)
 
-To enable NAT Port Forwarding, under the network settings of the VM's NAT network define the following port forwardings:
+To enable NAT Port Forwarding, under the network settings of the VM's NAT network define the following port forwarding:
 
 | Name          | Host port        | Guest port |
 | ------------- |------------------|----------- |
@@ -180,7 +177,7 @@ cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.servi
 ```
 
 * Edit the configuration file (replacing user & adding geometry)
-Edit the [Service] section of the file, replacing instances of <USER> with couchbase.
+Edit the [Service] section of the file, replacing instances of '<USER>' with couchbase.
 Also, add the -geometry 1280x1024 clause at the end of the ExecStart parameter. This just tells VNC the screen size it should start in.
 You will modify two lines in total.
 ```
@@ -196,6 +193,7 @@ systemctl enable vncserver@:1.service
 * Use a VNC client to connect to the UI (The password is 'couchbase' & URL is IP:5901)
 
 > The VNC Server can be stopped by using the command 'vncserver -kill :1'
+
 
 
 #### Java IDE
@@ -263,6 +261,7 @@ Or use the Desktop link 'Netbeans 8.2'
 
 
 
+
 #### C/C++ IDE
 
 * Install the development tools
@@ -289,16 +288,17 @@ qtcreator
 
 * Create an empty 'Qt Widgets Application' and run it
 
-### Final steps
+
+## Final steps
 
 * Power off the VM
 ```
 poweroff
 ```
 
-* Copy it over to another PC/Mac
+* Export the Appliance & Import it over to another PC/Mac
 * Start it there
-* Double check the network access
+* Double check the network access.
 
 | Check         | Checked|
 | ------------- |--------|
