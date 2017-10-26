@@ -32,8 +32,8 @@ Details regarding the setup of the workshop VM can be found here:
 
 * [VMSETUP](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/VMSETUP.md)
 
-> You can  directly download the VM and import the Appliance in VirtualBox:
-> * 
+You can also directly download the VM and import the Appliance in VirtualBox:  
+Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/view?usp=sharing
 
 ## Slides
 

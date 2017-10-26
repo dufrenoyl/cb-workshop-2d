@@ -2,7 +2,7 @@
 
 This document describes how to set up the workshop VM.  
 The VM image is available here (root / couchbase):
-*
+* https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/view?usp=sharing
 
 ## VirtualBox Settings
 
