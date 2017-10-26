@@ -14,13 +14,14 @@ We will detail here 2 different interfaces: NAT & Host-only.
 
 ### NAT
 
+> _The NAT interface should be there by default._
+
 If you just want to access the outside world from within the VM then a NAT interface is enough.  
-_The NAT interface should be there by default._  
 The NAT IP is automatically assigned and is usually something like '10.0.2.15'.
 
 In order to enable access from the outside world via NAT, 2 options:
   1. NAT Port forwarding on the same interface.
-  2. Create a new interface Host-only as described below. [Host only](#host-only)
+  2. Create a new interface Host-only as described below => [Host only](#host-only)
 
 To enable NAT Port Forwarding, under the network settings of the VM's NAT network define the following port forwarding:
 
@@ -287,6 +288,7 @@ qtcreator
 ```
 
 * Create an empty 'Qt Widgets Application' and run it
+
 
 
 ## Final steps
