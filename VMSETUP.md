@@ -178,7 +178,7 @@ cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.servi
 ```
 
 * Edit the configuration file (replacing user & adding geometry)
-Edit the [Service] section of the file, replacing instances of '<USER>' with couchbase.
+Edit the [Service] section of the file, replacing instances of '< USER >' with couchbase.
 Also, add the -geometry 1280x1024 clause at the end of the ExecStart parameter. This just tells VNC the screen size it should start in.
 You will modify two lines in total.
 ```
