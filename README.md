@@ -37,7 +37,7 @@ Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/
 
 ## Slides
 
-* In the folder slides.
+* Day 1.
   * [Workshop-Day1-0-Agenda.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-0-Agenda.pdf)
   * [Workshop-Day1-1-Introduction.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-1-Introduction.pdf)
   * [Workshop-Day1-2-Architecture.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-2-Architecture.pdf)
@@ -45,5 +45,7 @@ Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/
   * [Workshop-Day1-6-BackupRestore.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-6-BackupRestore.pdf)
   * [Workshop-Day1-7-XDCR.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-7-XDCR.pdf)
   * [Workshop-Day1-9-Labs.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-9-Labs.pdf)
-  * DAY2 C++ : [DCCPW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCCPW-Day2.pdf)
-  * DAY2 Java: [DCJW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCJW-Day2.pdf)
+ 
+ * Day 2
+  * Slides & Labs C++ : [DCCPW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCCPW-Day2.pdf)
+  * Slides & Labs Java: [DCJW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCJW-Day2.pdf)
