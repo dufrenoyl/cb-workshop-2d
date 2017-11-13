@@ -42,7 +42,7 @@ It allows us to connect to our VM without using Port forwarding.
   * IPv4 Address: 192.168.65.1
   * IPv4 Network Mask: 255.255.255.0
   * Enable DHCP Server
-     * Server Address: 192.168.65.0
+     * Server Address: 192.168.65.100
      * Server Mask: 255.255.255.0
      * Lower Address: 192.168.65.101
      * Upper Address: 192.168.65.254
