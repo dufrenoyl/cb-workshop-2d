@@ -23,6 +23,7 @@ The following software needs to be installed on the attendee's computer:
 * VirtualBox >= 4.3 (https://www.virtualbox.org/wiki/Downloads)
 * Putty and WinSCP (Windows only)
 * A VNC Viewer (https://github.com/TigerVNC/tigervnc/releases)
+* Firefox or Chrome
 
 The attendee should have all required permissions to create Virtual Machines and Virtual Machine networks on his box.
 
