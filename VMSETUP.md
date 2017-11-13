@@ -69,6 +69,17 @@ Perform the following steps in order to create the Virtual Machine:
 * Choose to create a user 'couchbase' and password 'couchbase' during the installation
 * Wait for the installation to complete.
 
+### Sudo settings
+
+> Run the command as root.
+
+Add couchbase user to the list of sudoers:
+```
+visudo
+couchbase ALL=(ALL) ALL
+```
+Save the file and log as couchbase to test sudo commands.
+
 ### Network settings
 
 > Run the command as root.
