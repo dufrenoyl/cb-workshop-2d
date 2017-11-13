@@ -15,10 +15,10 @@ int main(int argc, char *argv[])
 {
     qDebug() << "Starting demo application ...";
 
-    CBDataSourceFactory::Create("couchbase://localhost/travel-sample", QString());
+    CBDataSourceFactory::Create("couchbase://localhost/travel-sample", QString("couchbase"));
 
-    //DemoCouchbaseConnect connectDemo;
-    //connectDemo.test();
+    DemoCouchbaseConnect connectDemo;
+    connectDemo.test();
 
     //DemoCouchbaseGet getDemo;
     //getDemo.test();
