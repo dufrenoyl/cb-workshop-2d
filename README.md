@@ -23,6 +23,7 @@ The following software needs to be installed on the attendee's computer:
 * VirtualBox >= 4.3 (https://www.virtualbox.org/wiki/Downloads)
 * Putty and WinSCP (Windows only)
 * A VNC Viewer (https://github.com/TigerVNC/tigervnc/releases)
+* Firefox or Chrome
 
 The attendee should have all required permissions to create Virtual Machines and Virtual Machine networks on his box.
 
@@ -37,17 +38,15 @@ Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/
 
 ## Slides
 
-* In the folder slides.
-  * DAY1: [DCCPW-Day1.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCCPW-Day1.pdf)
-  * DAY2 C++ : [DCCPW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCCPW-Day2.pdf)
-  * DAY2 Java: [DCJW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCJW-Day2.pdf)
+* Day 1.
+  * Slides: [Workshop-Day1-0-Agenda.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-0-Agenda.pdf)
+  * Slides: [Workshop-Day1-1-Introduction.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-1-Introduction.pdf)
+  * Slides: [Workshop-Day1-2-Architecture.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-2-Architecture.pdf)
+  * Slides: [Workshop-Day1-5-Security.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-5-Security.pdf)
+  * Slides: [Workshop-Day1-6-BackupRestore.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-6-BackupRestore.pdf)
+  * Slides: [Workshop-Day1-7-XDCR.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-7-XDCR.pdf)
+  * Labs: [Workshop-Day1-9-Labs.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-9-Labs.pdf)
 
-
-## Outline
-
-* Day 1
-  * Introduction
-  * Couchbase Server Architecture
-
-* Day 2
-  * ..
+* Day 2.
+  * Slides & Labs C++ : [DCCPW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCCPW-Day2.pdf)
+  * Slides & Labs Java: [DCJW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCJW-Day2.pdf)
