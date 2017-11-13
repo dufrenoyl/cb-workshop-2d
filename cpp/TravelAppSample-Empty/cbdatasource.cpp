@@ -65,7 +65,7 @@ void CBDataSource::Connect(const QString& connectionString, const QString& passw
 
     CBQStringConvert connStrConv(connectionString);
     CBQStringConvert passwordConv(password);
-
+    CBQStringConvert usernameConv("travel-sample");
 
     //TODO: Excercise 7a - Connect
 

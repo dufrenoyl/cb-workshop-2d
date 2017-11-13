@@ -65,10 +65,12 @@ void CBDataSource::Connect(const QString& connectionString, const QString& passw
 
     CBQStringConvert connStrConv(connectionString);
     CBQStringConvert passwordConv(password);
+    CBQStringConvert usernameConv("travel-sample");
     struct lcb_create_st cropts;
     memset(&cropts, 0, sizeof cropts);
     cropts.version = 3;
     cropts.v.v3.connstr = connStrConv;
+    cropts.v.v3.username = usernameConv;
     if (!password.isEmpty())
     {
         cropts.v.v3.passwd = passwordConv;

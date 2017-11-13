@@ -48,5 +48,5 @@ Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/
   * Labs: [Workshop-Day1-9-Labs.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-9-Labs.pdf)
 
 * Day 2.
-  * Slides & Labs C++ : [DCCPW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCCPW-Day2.pdf)
-  * Slides & Labs Java: [DCJW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/DCJW-Day2.pdf)
+  * Slides & Labs C++ : [DCCPW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/DCCPW-Day2.pdf)
+  * Slides & Labs Java: [DCJW-Day2.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/DCJW-Day2.pdf)

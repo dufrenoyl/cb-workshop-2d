@@ -50,6 +50,7 @@ FORMS    += \
     mainwindow.ui
 
 ## Couchbase Options
+CONFIG +=console
 
 # Header file
 unix::INCLUDEPATH += /usr/include/libcouchbase

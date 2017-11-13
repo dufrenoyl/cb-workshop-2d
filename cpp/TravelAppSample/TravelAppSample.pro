@@ -54,6 +54,7 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     login.ui
 
+CONFIG +=console
 ## Couchbase Options
 
 # Header file
@@ -61,7 +62,6 @@ unix::INCLUDEPATH += /usr/include/libcouchbase
 
 # Linker option -l couchbase
 unix::LIBS  = -L/usr/lib64 -lcouchbase
-
 
 win32::LIBS += -L$$PWD/../../couchbase/libcouchbase-2.5.0_amd64_vc11/lib/ -llibcouchbase_d
 win32::INCLUDEPATH += $$PWD/../../couchbase/libcouchbase-2.5.0_amd64_vc11/include
