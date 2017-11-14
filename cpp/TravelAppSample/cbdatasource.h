@@ -16,7 +16,7 @@ public:
     CBDataSource();
     void Destroy();
 
-    void Connect(const QString& connectionString, const QString& password);
+    void Connect(const QString& connectionString, const QString& username, const QString& password);
     bool IsConnected();
 
     CouchbaseDocument Get(const QString& key);

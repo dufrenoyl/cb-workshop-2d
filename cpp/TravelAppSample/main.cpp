@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 {
     qDebug() << "Starting demo application ...";
 
-    CBDataSourceFactory::Create("couchbase://localhost/travel-sample", QString("couchbase"));
+    CBDataSourceFactory::Create("couchbase://localhost/travel-sample", QString("application"), QString("couchbase"));
 
     DemoCouchbaseConnect connectDemo;
     connectDemo.test();

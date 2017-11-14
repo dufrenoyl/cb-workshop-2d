@@ -4,7 +4,7 @@
 
 void DemoCouchbaseConnect::test()
 {
-   CBDataSourceFactory::Create("couchbase://localhost/travel-sample", QString());
+   CBDataSourceFactory::Create("couchbase://localhost/travel-sample", "application", QString());
    CBDataSource& ds = CBDataSourceFactory::Instance();
 
    bool isConnected = ds.IsConnected();

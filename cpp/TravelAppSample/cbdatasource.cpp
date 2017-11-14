@@ -56,7 +56,7 @@ CBDataSource::CBDataSource()
 {
 }
 
-void CBDataSource::Connect(const QString& connectionString, const QString& password)
+void CBDataSource::Connect(const QString& connectionString, const QString& username, const QString& password)
 {
     if (mIsConnected)
     {
@@ -65,7 +65,7 @@ void CBDataSource::Connect(const QString& connectionString, const QString& passw
 
     CBQStringConvert connStrConv(connectionString);
     CBQStringConvert passwordConv(password);
-    CBQStringConvert usernameConv("travel-sample");
+    CBQStringConvert usernameConv(username);
     struct lcb_create_st cropts;
     memset(&cropts, 0, sizeof cropts);
     cropts.version = 3;
@@ -97,7 +97,7 @@ void CBDataSource::Connect(const QString& connectionString, const QString& passw
     }
     else
     {
-        qDebug() << "Successfully created Couchbase instance.";
+        qDebug() << "Connected with Bucket=" << connectionString << "; username=" << username << "; password=" << password;
     }
 
     lcb_wait(mInstance);
