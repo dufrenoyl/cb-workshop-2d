@@ -36,7 +36,7 @@ Details regarding the setup of the workshop VM can be found here:
 You can also directly download the VM and import the Appliance in VirtualBox:  
 Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/view?usp=sharing
 
-## Slides
+## Slides & Labs
 
 * Day 1.
   * Slides: [Workshop-Day1-0-Agenda.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-0-Agenda.pdf)
@@ -48,7 +48,7 @@ Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/
   * Labs: [Workshop-Day1-9-Labs.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-9-Labs.pdf)
 
 * Day 2.
-  * Slides: [Workshop-Day2-1-Document Modeling.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/DWorkshop-Day2-1-Document Modeling.pdf)
+  * Slides: [Workshop-Day2-1-Document-Modeling.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/DWorkshop-Day2-1-Document-Modeling.pdf)
   * Slides: [Workshop-Day2-2-Indexes.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-2-Indexes.pdf)
   * Slides: [Workshop-Day2-3-N1QL.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-3-N1QL.pdf)
   * Slides: [Workshop-Day2-4-FTS.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-4-FTS.pdf)
