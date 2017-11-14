@@ -66,6 +66,7 @@ void CBDataSource::Connect(const QString& connectionString, const QString& usern
     CBQStringConvert connStrConv(connectionString);
     CBQStringConvert passwordConv(password);
     CBQStringConvert usernameConv(username);
+
     struct lcb_create_st cropts;
     memset(&cropts, 0, sizeof cropts);
     cropts.version = 3;
