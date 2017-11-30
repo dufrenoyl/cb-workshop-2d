@@ -4,7 +4,7 @@ Couchbase is the most powerful NoSQL data platform.
 
 This course is designed to give an introduction into Couchbase's main use cases, teach the Couchbase Server's administration basics and it's architecture. The main focus of this 2 day workshop is to learn how to develop with Couchbase's standard development kits. You will learn how to manage connections, how to work with documents and how to model your data best for Couchbase.
 
-This is a combined C/C++ & Java workshop. The Couchbase development basics will be thought together for Java and C/C++ developers. The audience will be split into 2 groups on the second day in order to perform programming language specific exercises.
+This is a combined C/C++ & Java workshop. 
 
 ## Requirements
 
