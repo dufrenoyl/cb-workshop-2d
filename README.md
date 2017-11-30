@@ -27,6 +27,10 @@ The following software needs to be installed on the attendee's computer:
 
 The attendee should have all required permissions to create Virtual Machines and Virtual Machine networks on his box.
 
+* Room Facilities
+
+The room should provide a video-projector (HDMI, DVI or VGA) & a whiteboard with eraser & pens.
+
 ## VM Setup
 
 Details regarding the setup of the workshop VM can be found here:
