@@ -10,13 +10,15 @@ This is a combined C/C++ & Java workshop. The Couchbase development basics will 
 
 Each training computer should have at least the following HW configuration.
 
+### Hardware
+
   * 4 CPU cores >=2GHz
   * 8 GB RAM
   * 50 GB free disk space
 
 The following connectivity is expected:
 
-* Internet access
+### Internet access
 
 The following software needs to be installed on the attendee's computer:
 
@@ -27,7 +29,7 @@ The following software needs to be installed on the attendee's computer:
 
 The attendee should have all required permissions to create Virtual Machines and Virtual Machine networks on his box.
 
-* Room Facilities
+### Room Facilities
 
 The room should provide a video-projector (HDMI, DVI or VGA) & a whiteboard with eraser & pens.
 
