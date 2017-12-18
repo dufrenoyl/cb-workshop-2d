@@ -55,8 +55,8 @@ Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/
   * Labs: [Workshop-Day1-9-Labs.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day1/Workshop-Day1-9-Labs.pdf)
 
 * Day 2.
-  * Slides: [Workshop-Day2-1-Document Modeling.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-1-Document Modeling.pdf)
-  * Slides: [Workshop-Day2-2-Json Data Modeling.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-2-Json Data Modeling.pdf)
+  * Slides: [Workshop-Day2-1-Document Modeling.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-1-Document%20Modeling.pdf)
+  * Slides: [Workshop-Day2-2-Json Data Modeling.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-2-Json%20Data%20Modeling.pdf)
   * Slides: [Workshop-Day2-3-Indexes.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-3-Indexes.pdf)
   * Slides: [Workshop-Day2-4-N1QL.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-4-N1QL.pdf)
   * Slides: [Workshop-Day2-5-FTS.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-5-FTS.pdf)
