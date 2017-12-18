@@ -62,6 +62,7 @@ public class Main {
         //demoCreateIndexes();
         //demoQueryWithN1QLSimple();
         //demoQueryWithN1QLJoin();
+        //demoQueryWithFTS();
         
         //Wait because the results are returned async.
         Thread.sleep(60000);
@@ -249,11 +250,24 @@ public class Main {
     
     /**
      * (1) Query by name via the company
-     * (2) Logs the result or the error (when an exception occoured)
+     * (2) Logs the result or the error (when an exception occured)
      */
     private static void demoQueryWithN1QLJoin() 
     {        
         CompanyDao.queryUsersByName("couchbase", "Maier")
+                .subscribe(
+                    u -> LOG.log(Level.INFO, "Got user {0}", u.getFirstName()),
+                    e -> LOG.log(Level.SEVERE, "Could not query for users!: {0}", e.toString())
+        );
+    }
+    
+    /**
+     * (1) Query by name via the company
+     * (2) Logs the result or the error (when an exception occured)
+     */
+    private static void demoQueryWithFTS() 
+    {        
+        CompanyDao.queryFTS("user email string")
                 .subscribe(
                     u -> LOG.log(Level.INFO, "Got user {0}", u.getFirstName()),
                     e -> LOG.log(Level.SEVERE, "Could not query for users!: {0}", e.toString())

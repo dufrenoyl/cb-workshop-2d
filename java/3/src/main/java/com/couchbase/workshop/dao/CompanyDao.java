@@ -21,12 +21,17 @@ import com.couchbase.client.java.document.JsonDocument;
 import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
 import com.couchbase.client.java.query.N1qlQuery;
+import com.couchbase.client.java.search.SearchQuery;
+import com.couchbase.client.java.search.queries.ConjunctionQuery;
+import com.couchbase.client.java.search.result.SearchQueryResult;
 import com.couchbase.workshop.pojo.Company;
 import com.couchbase.workshop.conn.BucketFactory;
+import static com.couchbase.workshop.main.Main.LOG;
 import com.couchbase.workshop.pojo.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import rx.Observable;
 
@@ -161,6 +166,24 @@ public class CompanyDao extends AJsonSerializable implements IAsyncDao {
                             )
               );
         
+    }
+    
+    
+    public static Observable<User> queryFTS(String email)
+    {
+        ConjunctionQuery fts = SearchQuery.conjuncts(SearchQuery.term("user").field("type"));
+        
+        if (email != null && !email.isEmpty() && !"*".equals(email))
+        {
+            fts.and(SearchQuery.disjuncts(
+                SearchQuery.matchPhrase(email).field("email")));
+            // Perform the search.
+            
+            SearchQuery query = new SearchQuery("hotel", fts)
+                    .limit(1);
+            LOG.log(Level.INFO, "Query=", query.export().toString());
+            //SearchQueryResult result = bucket.query(query);
+        }
     }
     
     

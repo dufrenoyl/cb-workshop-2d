@@ -29,6 +29,7 @@ public class CouchbaseConfig extends BaseConfig {
     private String[] hosts;
     private int port;
     private String bucket;
+    private String username;
     private String password;
     
     
@@ -55,6 +56,11 @@ public class CouchbaseConfig extends BaseConfig {
         return this.bucket;
     }
     
+    public String getUsername() {
+        this.username = this.props.getProperty("cb.con.bucket.username"); 
+        return this.username;
+    }
+        
     public String getPassword() {
         this.password = this.props.getProperty("cb.con.bucket.pwd"); 
         return this.password;

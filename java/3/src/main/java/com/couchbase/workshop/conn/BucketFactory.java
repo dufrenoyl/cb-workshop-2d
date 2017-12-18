@@ -21,6 +21,8 @@ import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.workshop.cfg.ConfigManager;
 import com.couchbase.workshop.cfg.CouchbaseConfig;
+import static com.couchbase.workshop.main.Main.LOG;
+import java.util.logging.Level;
 
 /**
  *
@@ -56,14 +58,16 @@ public class BucketFactory {
         CouchbaseConfig cfg = ConfigManager.getCBConfig();
         
         Cluster cluster = ClusterFactory.getCluster();
+        
        
         if (cfg.getPassword() != null && !cfg.getPassword().equals(""))
         {
-            bucket = cluster.openBucket(cfg.getBucket(), cfg.getPassword());
+            cluster.authenticate(cfg.getUsername(), cfg.getPassword());
+            bucket = cluster.openBucket(cfg.getBucket());
         }
         else
         {
-            bucket = cluster.openBucket(cfg.getBucket());
+            LOG.log(Level.WARNING, "No user or password provided => ERROR");
         }
        
         return bucket;
