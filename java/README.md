@@ -8,10 +8,24 @@ Please see the file [VMSetup](https://github.com/dufrenoyl/cb-workshop-dev/blob/
 
 The starting point for the day 2 execises is the '1' folder. This is basically an empty application skeleton. Folder '2' is a bit more progressed. The final solution can be found in folder '3'.
 
-| #               | Title                                  | Content                                      | 
-| --------------- | -------------------------------------- | -------------------------------------------- |
-| 7               | Project Setup                          | Maven Dependencies | 
-| 8               | Connection Management                  | ConnectionFactory, Singleton approach |
-| 9               | CRUD Operations                        | Create Documents, Reference Documents, Get Documents |
-| 10              | Querying via Views                     | Create a Design Document, Create View, Query via the Browser and Client |
-| 11              | Querying via N1QL                      | Create a Secondary Index via the CLI, A simple Query, Query by performing a Join |
+| #  | Title                 | Content                                                                          |
+|:---|:----------------------|:---------------------------------------------------------------------------------|
+| 7  | Project Setup         | Maven Dependencies                                                               |
+| 8  | Connection Management | ConnectionFactory, Singleton approach                                            |
+| 9  | CRUD Operations       | Create Documents, Reference Documents, Get Documents                             |
+| 10 | Querying via Views    | Create a Design Document, Create View, Query via the Browser and Client          |
+| 11 | Querying via N1QL     | Create a Secondary Index via the CLI, A simple Query, Query by performing a Join |
+
+## Command line only
+
+If you can't use a graphical user interface, the project can be built with
+
+```
+mvn compile
+```
+
+and can be run with
+
+```
+mvn exec:java -Dexec.mainClass="com.couchbase.workshop.main.Main"
+```
