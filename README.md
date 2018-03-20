@@ -23,6 +23,7 @@ The following connectivity is expected:
 The following software needs to be installed on the attendee's computer:
 
   * VirtualBox >= 4.3 (https://www.virtualbox.org/wiki/Downloads)
+  * Hardware virtualization enabled. (AMD-V/VT-x) => [Troubleshooting Guide] (https://github.com/dufrenoyl/cb-workshop-2d/blob/master/Workshop-Troubleshoot-Guide-Labs.pdf)
   * Putty and WinSCP (Windows only)
   * A VNC Viewer (https://github.com/TigerVNC/tigervnc/releases)
   * Firefox or Chrome
