@@ -43,6 +43,8 @@ Details regarding the setup of the workshop VM can be found here:
 You can also directly download the VM and import the Appliance in VirtualBox:  
 Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/view?usp=sharing
 
+[Troubleshooting Guide](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Workshop-Troubleshoot-Guide.pdf)
+
 ## Slides & Labs
 
 * Day 1.
