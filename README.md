@@ -45,6 +45,15 @@ Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/
 
 [Troubleshooting Guide](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Workshop-Troubleshoot-Guide.pdf)
 
+### Alternative to VM (Docker)
+
+In case that you have issues running the VM you could run a Docker container  with a 1 node cluster using the following command:
+
+```
+docker run -d -p 8091-8094:8091-8094 -p 11210:11210 --name cb1 -v /[FULL_PATH]/cb1:/opt/couchbase/var couchbase
+```
+
+> Note that the [FULL_PATH] is a real path on your host machine e.g. /tmp/couchbase
 ## Slides & Labs
 
 * Day 1.
@@ -65,3 +74,8 @@ Here is the link:  https://drive.google.com/file/d/0B2k_ASGIBGIiN1VJbUUzUnFtUTg/
   * Slides: [Workshop-Day2-5-FTS.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-5-FTS.pdf)
   * Labs C: [Workshop-Day2-9-CCCP-Labs.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-9-CCCP-Labs.pdf)
   * Labs Java: [Workshop-Day2-9-Java-Labs.pdf](https://github.com/dufrenoyl/cb-workshop-2d/blob/master/slides/Day2/Workshop-Day2-9-Java-Labs.pdf)
+
+## Resources
+
+* [RXJava Cheat Sheet](http://files.zeroturnaround.com/pdf/zt-rxjava-cheat-sheet.pdf)
+* [Couchbase in Docker](https://developer.couchbase.com/documentation/server/current/install/docker-deploy-single-node-cluster.html)
