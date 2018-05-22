@@ -1,0 +1,7 @@
+.DS_*
+*.zip
+*.csv
+*.txt
+.idea*
+target
+*.iml

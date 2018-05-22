@@ -14,49 +14,52 @@
   * limitations under the License.
   */
 
-package com.couchbase.workshop.conn;
+ package com.couchbase.workshop.conn;
 
-import com.couchbase.client.java.Cluster;
-import com.couchbase.client.java.CouchbaseCluster;
-import com.couchbase.client.java.env.CouchbaseEnvironment;
-import com.couchbase.client.java.env.DefaultCouchbaseEnvironment;
-import com.couchbase.workshop.cfg.ConfigManager;
-import java.util.Arrays;
-import java.util.List;
+ import com.couchbase.client.java.Cluster;
+ import com.couchbase.client.java.CouchbaseCluster;
+ import com.couchbase.client.java.env.CouchbaseEnvironment;
+ import com.couchbase.client.java.env.DefaultCouchbaseEnvironment;
+ import com.couchbase.workshop.cfg.ConfigManager;
 
-/**
- *
- * @author David Maier <david.maier at couchbase.com>
- */
-public class ClusterFactory {
-    
-    private static Cluster cluster;
-    
-    
-    public static Cluster getCluster()
-    {
-        if (cluster == null)
-            createCluster();
-       
-        return cluster;
-    }
-    
-    public static Cluster createCluster()
-    {
-        //Enable N1QL
-        if (ConfigManager.getCBConfig().isQueryEnabled())
-            System.setProperty("com.couchbase.queryEnabled", "" + ConfigManager.getCBConfig().isQueryEnabled());
-        
-        //Create the cluster reference
-        String[] hosts = ConfigManager.getCBConfig().getHosts();
-        
-        List<String> nodes = Arrays.asList(hosts);
-                          
-        CouchbaseEnvironment env = DefaultCouchbaseEnvironment.builder().kvEndpoints(2).viewEndpoints(2).build();
-      
-        cluster = CouchbaseCluster.create(env, nodes);
-        
-        
-        return cluster;
-    }
-}
+ import java.util.Arrays;
+ import java.util.List;
+
+ /**
+  * @author David Maier <david.maier at couchbase.com>
+  * @author Raymundo Flores <ray at couchbase.com>
+  */
+ public class ClusterFactory {
+
+     private static Cluster cluster;
+
+
+     public static Cluster getCluster() {
+         if (cluster == null)
+             createCluster();
+
+         return cluster;
+     }
+
+     public static Cluster createCluster() {
+         //Enable N1QL
+         if (ConfigManager.getCBConfig().isQueryEnabled())
+             System.setProperty("com.couchbase.queryEnabled", "" + ConfigManager.getCBConfig().isQueryEnabled());
+
+         //Create the cluster reference
+         String[] hosts = ConfigManager.getCBConfig().getHosts();
+
+         List<String> nodes = Arrays.asList(hosts);
+
+         CouchbaseEnvironment env = DefaultCouchbaseEnvironment.builder()
+                 .kvEndpoints(2)
+                 .viewEndpoints(2).continuousKeepAliveEnabled(true)
+                 .keepAliveInterval(10000)
+                 .build();
+
+         cluster = CouchbaseCluster.create(env, nodes);
+
+
+         return cluster;
+     }
+ }

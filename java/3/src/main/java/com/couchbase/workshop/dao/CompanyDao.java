@@ -14,140 +14,138 @@
   * limitations under the License.
   */
 
-package com.couchbase.workshop.dao;
+ package com.couchbase.workshop.dao;
 
-import com.couchbase.client.java.AsyncBucket;
-import com.couchbase.client.java.document.JsonDocument;
-import com.couchbase.client.java.document.json.JsonArray;
-import com.couchbase.client.java.document.json.JsonObject;
-import com.couchbase.client.java.query.N1qlQuery;
-import com.couchbase.client.java.search.SearchQuery;
-import com.couchbase.client.java.search.queries.ConjunctionQuery;
-import com.couchbase.client.java.search.result.SearchQueryResult;
-import com.couchbase.workshop.pojo.Company;
-import com.couchbase.workshop.conn.BucketFactory;
-import static com.couchbase.workshop.main.Main.LOG;
-import com.couchbase.workshop.pojo.User;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import rx.Observable;
+ import com.couchbase.client.java.AsyncBucket;
+ import com.couchbase.client.java.document.JsonDocument;
+ import com.couchbase.client.java.document.json.JsonArray;
+ import com.couchbase.client.java.document.json.JsonObject;
+ import com.couchbase.client.java.query.N1qlQuery;
+ import com.couchbase.client.java.search.SearchQuery;
+ import com.couchbase.client.java.search.queries.MatchPhraseQuery;
+ import com.couchbase.workshop.conn.BucketFactory;
+ import com.couchbase.workshop.pojo.Company;
+ import com.couchbase.workshop.pojo.User;
+ import rx.Observable;
 
-/**
- * The Data Access Object which wraps a Company object
- *
- * @author David Maier <david.maier at couchbase.com>
- */
-public class CompanyDao extends AJsonSerializable implements IAsyncDao {
+ import java.util.ArrayList;
+ import java.util.Date;
+ import java.util.List;
+ import java.util.logging.Level;
+ import java.util.logging.Logger;
 
-    /**
-     * Constants
-     */
-    public static final String TYPE = "company";
-    public static final String PROP_TYPE = "type";
-    public static final String PROP_ID = "id";
-    public static final String PROP_NAME = "name";
-    public static final String PROP_ADDRESS = "address";
-    public static final String PROP_USERS = "users";
+ /**
+  * The Data Access Object which wraps a Company object
+  *
+  * @author David Maier <david.maier at couchbase.com>
+  * @author Raymundo Flores <ray at couchbase.com>
+  */
+ public class CompanyDao extends AJsonSerializable implements IAsyncDao {
 
-    /**
-     * Logger
-     */
-    private static final Logger LOG = Logger.getLogger(CompanyDao.class.getName());
+     /**
+      * Constants
+      */
+     public static final String TYPE = "company";
+     public static final String PROP_TYPE = "type";
+     public static final String PROP_ID = "id";
+     public static final String PROP_NAME = "name";
+     public static final String PROP_ADDRESS = "address";
+     public static final String PROP_USERS = "users";
 
-    /**
-     * Bucket reference
-     */
-    private final static AsyncBucket bucket = BucketFactory.getAsyncBucket();
+     /**
+      * Logger
+      */
+     private static final Logger LOG = Logger.getLogger(CompanyDao.class.getName());
 
-    /**
-     * Company reference
-     */
-    private final Company company;
+     /**
+      * Bucket reference
+      */
+     private final static AsyncBucket bucket = BucketFactory.getAsyncBucket();
 
-    /**
-     * The constructor of the DAO
-     *
-     * @param company
-     */
-    public CompanyDao(Company company) {
-        this.company = company;
-    }
+     /**
+      * Company reference
+      */
+     private final Company company;
 
-    /**
-     * Persist the Company and all the associated Users
-     *
-     * @return
-     */
-    @Override
-    public Observable<Company> persist() {
+     /**
+      * The constructor of the DAO
+      *
+      * @param company
+      */
+     public CompanyDao(Company company) {
+         this.company = company;
+     }
 
-        JsonDocument doc = toJson(this.company);
+     /**
+      * Persist the Company and all the associated Users
+      *
+      * @return
+      */
+     @Override
+     public Observable<Company> persist() {
 
-        //Update all users then update the company
-        return Observable
-                .from(company.getUsers())
-                .flatMap( u -> DAOFactory.createUserDao(u).persist())
-                .lastOrDefault(null)
-                .flatMap(u -> bucket.upsert(doc))
-                .map(resultDoc -> (Company) fromJson(resultDoc));
-    }
+         JsonDocument doc = toJson(this.company);
 
-    /**
-     * To get a company with all it's users
-     *
-     *
-     * @return
-     */
-    @Override
-    public Observable<Company> get() {
+         //Update all users then update the company
+         return Observable
+                 .from(company.getUsers())
+                 .flatMap(u -> DAOFactory.createUserDao(u).persist())
+                 .lastOrDefault(null)
+                 .flatMap(u -> bucket.upsert(doc))
+                 .map(resultDoc -> (Company) fromJson(resultDoc));
+     }
 
-        //Get the company by the id
-        String id = TYPE + "::" + company.getId();
+     /**
+      * To get a company with all it's users
+      *
+      * @return
+      */
+     @Override
+     public Observable<Company> get() {
 
-        return bucket.get(id)
-                .map(resultDoc -> (Company) fromJson(resultDoc))
-                .flatMap(c -> Observable.from(c.getUsers())
-                        .flatMap(user -> DAOFactory.createUserDao(user).get()
-                                .doOnNext(u -> {
-                                    user.setFirstName(u.getFirstName());
-                                    user.setLastName(u.getLastName());
-                                    user.setEmail(u.getEmail());
-                                    user.setBirthDay(u.getBirthDay());
-                                })
-                        )
-                        .lastOrDefault(null)
-                        .map(u -> c)
-                );
-    }
+         //Get the company by the id
+         String id = TYPE + "::" + company.getId();
 
-    
-    /**
-     * Queries the company uses by filtering by last name
-     * 
-     * @param comp
-     * @param lastname
-     * @return 
-     */
-    public static Observable<User> queryUsersByName(String comp, String lastname)
-    {
-        String query = "SELECT w.{PROP_NAME}, s.* FROM {bucket} w "
-                     + "JOIN {bucket} s ON KEYS w.{PROP_USERS} "
-                     + "WHERE w.{PROP_TYPE} = '{TYPE}' "
-                     + "AND w.{PROP_ID} = '{id}' "
-                     + "AND s.{PROP_LASTNAME} = '{lastname}'";
-             
-        query = query.replace("{PROP_NAME}", PROP_NAME);
-        query = query.replace("{bucket}", bucket.name());
-        query = query.replace("{PROP_USERS}", PROP_USERS);
-        query = query.replace("{PROP_TYPE}", PROP_TYPE);
-        query = query.replace("{TYPE}", TYPE);
-        query = query.replace("{PROP_ID}", PROP_ID);
-        query = query.replace("{id}", comp);
-        query = query.replace("{PROP_LASTNAME}", UserDao.PROP_LASTNAME);
-        query = query.replace("{lastname}", lastname);
+         return bucket.get(id)
+                 .map(resultDoc -> (Company) fromJson(resultDoc))
+                 .flatMap(c -> Observable.from(c.getUsers())
+                         .flatMap(user -> DAOFactory.createUserDao(user).get()
+                                 .doOnNext(u -> {
+                                     user.setFirstName(u.getFirstName());
+                                     user.setLastName(u.getLastName());
+                                     user.setEmail(u.getEmail());
+                                     user.setBirthDay(u.getBirthDay());
+                                 })
+                         )
+                         .lastOrDefault(null)
+                         .map(u -> c)
+                 );
+     }
+
+
+     /**
+      * Queries the company uses by filtering by last name
+      *
+      * @param comp
+      * @param lastname
+      * @return
+      */
+     public static Observable<User> queryUsersByName(String comp, String lastname) {
+         String query = "SELECT w.{PROP_NAME}, s.* FROM {bucket} w "
+                 + "JOIN {bucket} s ON KEYS w.{PROP_USERS} "
+                 + "WHERE w.{PROP_TYPE} = '{TYPE}' "
+                 + "AND w.{PROP_ID} = '{id}' "
+                 + "AND s.{PROP_LASTNAME} = '{lastname}'";
+
+         query = query.replace("{PROP_NAME}", PROP_NAME);
+         query = query.replace("{bucket}", bucket.name());
+         query = query.replace("{PROP_USERS}", PROP_USERS);
+         query = query.replace("{PROP_TYPE}", PROP_TYPE);
+         query = query.replace("{TYPE}", TYPE);
+         query = query.replace("{PROP_ID}", PROP_ID);
+         query = query.replace("{id}", comp);
+         query = query.replace("{PROP_LASTNAME}", UserDao.PROP_LASTNAME);
+         query = query.replace("{lastname}", lastname);
      
         /*
         FYI: The params in the WHERE clause can be parameterized
@@ -155,113 +153,122 @@ public class CompanyDao extends AJsonSerializable implements IAsyncDao {
         JsonObject placeholderValues = JsonObject.create().put("ptype", "value");
         q = N1qlQuery.parameterized(queryStr_Or_Stmt, placeholderValues);
         */
-        
-     
-        return bucket.query(N1qlQuery.simple(query))
-              .flatMap(result -> result.rows())
-              .map(row -> row.value())
-              .map(v -> new User(v.getString(UserDao.PROP_UID), v.getString(UserDao.PROP_FIRSTNAME), 
+
+
+         return bucket.query(N1qlQuery.simple(query))
+                 .flatMap(result -> result.rows())
+                 .map(row -> row.value())
+                 .map(v -> new User(v.getString(UserDao.PROP_UID), v.getString(UserDao.PROP_FIRSTNAME),
                                  v.getString(UserDao.PROP_LASTNAME), v.getString(UserDao.PROP_EMAIL),
                                  new Date(v.getLong(UserDao.PROP_BDAY))
-                            )
-              );
-        
-    }
-    
-    
-    public static Observable<User> queryFTS(String email)
-    {
-        ConjunctionQuery fts = SearchQuery.conjuncts(SearchQuery.term("user").field("type"));
-        
-        if (email != null && !email.isEmpty() && !"*".equals(email))
-        {
-            fts.and(SearchQuery.disjuncts(
-                SearchQuery.matchPhrase(email).field("email")));
-            // Perform the search.
-            
-            SearchQuery query = new SearchQuery("hotel", fts)
-                    .limit(1);
-            LOG.log(Level.INFO, "Query=", query.export().toString());
-            //SearchQueryResult result = bucket.query(query);
-        }
-    }
-    
-    
-    
-    /**
-     * Returns the Json object from the given Company
-     *
-     * @param obj
-     * @return
-     */
-    @Override
-    protected JsonDocument toJson(Object obj) {
+                         )
+                 );
 
-        Company tmpComp = (Company) obj;
+     }
 
-        //Create an empty JSON document
-        JsonObject json = JsonObject.empty();
+     /**
+      * Query user by email.
+      *
+      * @param email
+      * @return
+      */
+     public static Observable<User> queryFTS(String email) {
 
-        json.put(PROP_TYPE, TYPE);
-        if (tmpComp.getId() != null) {
-            json.put(PROP_ID, tmpComp.getId());
-        }
-        if (tmpComp.getName() != null) {
-            json.put(PROP_NAME, tmpComp.getName());
-        }
-        if (tmpComp.getAddress() != null) {
-            json.put(PROP_ADDRESS, tmpComp.getAddress());
-        }
+         MatchPhraseQuery fts = SearchQuery.matchPhrase(email);
 
-        List<User> users = tmpComp.getUsers();
+         // Perform the search.
 
-        JsonArray userArray = JsonArray.create();
+         SearchQuery query = new SearchQuery("idx_default", fts);
 
-        for (User user : users) {
+         LOG.log(Level.INFO, "Query {0}", query.export().toString());
 
-            userArray.add(UserDao.TYPE + "::" + user.getUid());
-        }
 
-        json.put(PROP_USERS, userArray);
+         return bucket.query(query).flatMap(result -> result.hits())
+                 .flatMap(row -> bucket.get(row.id()))
+                 .map(doc -> new User(
+                         doc.content().getString(UserDao.PROP_UID),
+                         doc.content().getString(UserDao.PROP_FIRSTNAME),
+                         doc.content().getString(UserDao.PROP_LASTNAME),
+                         doc.content().getString(UserDao.PROP_EMAIL),
+                         new Date(doc.content().getLong(UserDao.PROP_BDAY))));
 
-        JsonDocument doc = JsonDocument.create(TYPE + "::" + tmpComp.getId(), json);
+     }
 
-        return doc;
-    }
 
-    /**
-     * Returns the company object from the existing JSON one.
-     *
-     * Does not yet resolve the User object references completely
-     *
-     * @param doc
-     * @return
-     */
-    @Override
-    protected Object fromJson(JsonDocument doc) {
+     /**
+      * Returns the Json object from the given Company
+      *
+      * @param obj
+      * @return
+      */
+     @Override
+     protected JsonDocument toJson(Object obj) {
 
-        JsonObject json = doc.content();
+         Company tmpComp = (Company) obj;
 
-        Company tmpComp = new Company(json.getString(PROP_ID));
+         //Create an empty JSON document
+         JsonObject json = JsonObject.empty();
 
-        tmpComp.setName(json.getString(PROP_NAME));
-        tmpComp.setAddress(json.getString(PROP_ADDRESS));
+         json.put(PROP_TYPE, TYPE);
+         if (tmpComp.getId() != null) {
+             json.put(PROP_ID, tmpComp.getId());
+         }
+         if (tmpComp.getName() != null) {
+             json.put(PROP_NAME, tmpComp.getName());
+         }
+         if (tmpComp.getAddress() != null) {
+             json.put(PROP_ADDRESS, tmpComp.getAddress());
+         }
 
-        List<User> users = new ArrayList<>();
-        JsonArray userArr = json.getArray(PROP_USERS);
+         List<User> users = tmpComp.getUsers();
 
-        for (int i = 0; i < userArr.size(); i++) {
+         JsonArray userArray = JsonArray.create();
 
-            String userKey = userArr.getString(i);
-            String uid = userKey.split(UserDao.TYPE + "::")[1];
+         for (User user : users) {
 
-            //Don't fill the users yet
-            users.add(new User(uid));
-        }
+             userArray.add(UserDao.TYPE + "::" + user.getUid());
+         }
 
-        tmpComp.setUsers(users);
+         json.put(PROP_USERS, userArray);
 
-        return tmpComp;
-    }
+         JsonDocument doc = JsonDocument.create(TYPE + "::" + tmpComp.getId(), json);
 
-}
+         return doc;
+     }
+
+     /**
+      * Returns the company object from the existing JSON one.
+      *
+      * Does not yet resolve the User object references completely
+      *
+      * @param doc
+      * @return
+      */
+     @Override
+     protected Object fromJson(JsonDocument doc) {
+
+         JsonObject json = doc.content();
+
+         Company tmpComp = new Company(json.getString(PROP_ID));
+
+         tmpComp.setName(json.getString(PROP_NAME));
+         tmpComp.setAddress(json.getString(PROP_ADDRESS));
+
+         List<User> users = new ArrayList<>();
+         JsonArray userArr = json.getArray(PROP_USERS);
+
+         for (int i = 0; i < userArr.size(); i++) {
+
+             String userKey = userArr.getString(i);
+             String uid = userKey.split(UserDao.TYPE + "::")[1];
+
+             //Don't fill the users yet
+             users.add(new User(uid));
+         }
+
+         tmpComp.setUsers(users);
+
+         return tmpComp;
+     }
+
+ }
